@@ -7,6 +7,28 @@ build/
 
 .DS_Store
 
+# Ignore all .env files
+.env
+.env.*
+
+!src/main/resources/application.yml
+/src/main/resources/static/qr/
+
+# AI Assistant configurations - keep out of version control
+# Claude Code
+CLAUDE.md
+.claude/
+.claude-config/
+claude-context.md
+claude-session.md
+
+# Gemini CLI
+.gemini/
+.gemini-config/
+GEMINI.md
+gemini-context.md
+gemini-session.md
+
 ### STS ###
 .apt_generated
 .classpath

@@ -1,0 +1,41 @@
+server:
+  port: 8082
+  forward-headers-strategy: native
+
+logging:
+  level:
+    root: info
+    com.myce: debug
+    com.myce.common.aop.ControllerLoggingAspect: debug
+
+spring:
+  profiles:
+    active: ${PROFILE} # local | product
+    include:
+      - domain
+      - common
+  servlet: # file uploads
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  config:
+    import:
+      - optional:file:../.env[.properties]
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    persistAuthorization: true
+  api-docs:
+    path: /v3/api-docs
+
+scheduler:
+  test: "0 * * * * *" # every minute
+  ad-publish: "0 0 0 * * *" # 배너 게시 상태 체크, 일일 단위
+  qr-code-activate: 0 10 0 * * * # QR 코드 활성화 - 매일 00:10에 실행
+  qr-code-expire: 0 20 0 * * * # QR 코드 만료 처리 - 매일 00:20에 실행
+  expo-qr-generate: 0 0 0 * * * # 박람회 QR코드 일괄 생성 - 매일 00:00에 실행
+  admin-timeout: 0 */1 * * * * # 1분마다 (테스트용) -> 담당자 배졍
+  expo-publish: "0 */10 * * * *" # 10분마다 박람회 게시 상태 체크 및 종료 처리
+  event-notification: "0 0,30 * * * *" # 이벤트 1시간 전 알림 - 매시 정각과 30분에 실행
+  expo-notification: "0 0 9 * * *" # 박람회 하루전
