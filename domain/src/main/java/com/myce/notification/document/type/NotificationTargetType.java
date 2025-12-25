@@ -1,4 +1,4 @@
-package com.myce.notification.type;
+package com.myce.notification.document.type;
 
 public enum NotificationTargetType {
     QR_ISSUED,

@@ -11,16 +11,12 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 20000
 
-  data: # MongoDB
-    redis:
-      url: ${REDIS_URL}
-      repositories:
-        enabled: false  # Disable Redis repository auto-configuration (using RedisTemplate only)
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
 
   jpa:
     hibernate:
       ddl-auto: none # in development (auto table create/modify)
       # ddl-auto: none  # in operation (manual sql management)
     show-sql: true
-  mongodb:
-    uri: ${MONGODB_URI}

@@ -1,4 +1,4 @@
-package com.myce.notification.type;
+package com.myce.notification.document.type;
 
 public enum NotificationType {
     EXPO_REMINDER,      // 박람회 디데이 알림 -> 박람회 상세 페이지로 이동

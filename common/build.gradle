@@ -1,33 +1,12 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '4.0.0'
-    id 'io.spring.dependency-management' version '1.1.7'
+dependencies {
+    // common에 필요한 추가 의존성이 있다면 여기에
 }
 
 bootJar { enabled = false }
 jar { enabled = true }
 
-group = 'com.myce'
-version = '0.0.1-SNAPSHOT'
-description = 'common'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
+// IntelliJ Kotlin plugin sometimes requests this task even in pure Java projects.
+// Define a no-op to silence "prepareKotlinBuildScriptModel not found" sync errors.
+if (tasks.findByName("prepareKotlinBuildScriptModel") == null) {
+    tasks.register("prepareKotlinBuildScriptModel") {}
 }

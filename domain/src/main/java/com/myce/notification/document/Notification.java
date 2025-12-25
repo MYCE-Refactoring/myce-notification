@@ -1,7 +1,7 @@
 package com.myce.notification.document;
 
-import com.myce.notification.type.NotificationTargetType;
-import com.myce.notification.type.NotificationType;
+import com.myce.notification.document.type.NotificationTargetType;
+import com.myce.notification.document.type.NotificationType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
