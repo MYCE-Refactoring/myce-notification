@@ -1,4 +1,4 @@
-package com.myce.notification;
+package com.myce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

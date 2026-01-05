@@ -1,4 +1,4 @@
-package com.myce.notification.service.impl;
+package com.myce.notification.service;
 
 import com.myce.notification.document.type.AdvertisementStatus;
 import com.myce.notification.document.type.ExpoStatus;
