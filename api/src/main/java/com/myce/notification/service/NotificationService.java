@@ -1,12 +1,7 @@
 package com.myce.notification.service;
 
-import com.myce.notification.document.type.NotificationTargetType;
-import com.myce.notification.document.type.NotificationType;
-import com.myce.notification.dto.AdStatusChangeCommand;
-import com.myce.notification.dto.ExpoStatusChangeCommand;
-import com.myce.notification.dto.NotificationResponseList;
 
-import java.util.List;
+import com.myce.notification.dto.NotificationResponseList;
 
 public interface NotificationService {
 

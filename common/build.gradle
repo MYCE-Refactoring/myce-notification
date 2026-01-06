@@ -1,6 +1,7 @@
 dependencies {
-    // common에 필요한 추가 의존성이 있다면 여기에
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 }
+
 
 bootJar { enabled = false }
 jar { enabled = true }

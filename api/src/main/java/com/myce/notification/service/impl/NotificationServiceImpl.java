@@ -1,4 +1,4 @@
-package com.myce.notification.service;
+package com.myce.notification.service.impl;
 
 import com.myce.notification.document.type.AdvertisementStatus;
 import com.myce.notification.document.type.ExpoStatus;
@@ -16,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -44,25 +43,17 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void markAsRead(String notificationId, Long memberId) {
-        try {
-            // MongoDB @Update를 사용하여 원자적 업데이트 수행
-            // Query 조건에 memberId도 포함하여 권한 체크와 업데이트를 한번에 처리
-            notificationRepository.markAsRead(notificationId, memberId, LocalDateTime.now());
-            log.info("알림 읽음 처리 완료 - 알림 ID: {}, 회원 ID: {}", notificationId, memberId);
-        } catch (Exception e) {
-            log.error("알림 읽음 처리 실패 - 알림 ID: {}, 회원 ID: {}, 오류: {}", notificationId, memberId, e.getMessage(), e);
-        }
+        // MongoDB @Update를 사용하여 원자적 업데이트 수행
+        // Query 조건에 memberId도 포함하여 권한 체크와 업데이트를 한번에 처리
+        notificationRepository.markAsRead(notificationId, memberId, LocalDateTime.now());
+        log.info("알림 읽음 처리 완료 - 알림 ID: {}, 회원 ID: {}", notificationId, memberId);
     }
 
     @Override
     public void markAllAsRead(Long memberId) {
-        try {
-            // 해당 회원의 모든 읽지 않은 알림을 읽음 처리
-            notificationRepository.markAllAsReadByMemberId(memberId, LocalDateTime.now());
-            log.info("모든 알림 읽음 처리 완료 - 회원 ID: {}", memberId);
-        } catch (Exception e) {
-            log.error("모든 알림 읽음 처리 실패 - 회원 ID: {}, 오류: {}", memberId, e.getMessage(), e);
-        }
+        // 해당 회원의 모든 읽지 않은 알림을 읽음 처리
+        notificationRepository.markAllAsReadByMemberId(memberId, LocalDateTime.now());
+        log.info("모든 알림 읽음 처리 완료 - 회원 ID: {}", memberId);
     }
 
     private String getStatusDisplayName(ExpoStatus status) {

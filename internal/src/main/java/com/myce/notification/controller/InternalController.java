@@ -18,14 +18,14 @@ import java.util.List;
 @Slf4j
 public class InternalController {
 
-    private final InternalService notificationService; // 기존 구현 주입
+    private final InternalService internalService; // 기존 구현 주입
     private final NotificationRepository notificationRepository;
 
     @PostMapping("/qr-issued")
     public void sendQrIssued(@RequestBody QrIssuedRequest req) {
         log.info("QR-Issued 요청 수신됨: memberId={}, reservationId={}, expoTitle={}, reissue={}",
                 req.getMemberId(), req.getReservationId(), req.getExpoTitle(), req.isReissue());
-        notificationService.sendQrIssuedNotification(req);
+        internalService.sendQrIssuedNotification(req);
     }
 
     @GetMapping("")
