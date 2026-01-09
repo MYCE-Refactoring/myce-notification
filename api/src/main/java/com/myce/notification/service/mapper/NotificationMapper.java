@@ -3,8 +3,8 @@ package com.myce.notification.service.mapper;
 import com.myce.notification.document.Notification;
 import com.myce.notification.document.type.NotificationTargetType;
 import com.myce.notification.document.type.NotificationType;
-import com.myce.notification.dto.NotificationResponse;
-import com.myce.notification.dto.NotificationResponseList;
+import com.myce.notification.dto.response.NotificationResponse;
+import com.myce.notification.dto.response.NotificationResponseList;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 

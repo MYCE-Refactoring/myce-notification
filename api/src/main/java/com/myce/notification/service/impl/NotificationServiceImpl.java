@@ -3,7 +3,7 @@ package com.myce.notification.service.impl;
 import com.myce.notification.document.type.AdvertisementStatus;
 import com.myce.notification.document.type.ExpoStatus;
 import com.myce.notification.document.Notification;
-import com.myce.notification.dto.NotificationResponseList;
+import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.repository.NotificationRepository;
 import com.myce.notification.service.NotificationService;
 import com.myce.notification.service.mapper.NotificationMapper;

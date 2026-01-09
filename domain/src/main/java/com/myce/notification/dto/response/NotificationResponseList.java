@@ -1,5 +1,4 @@
-package com.myce.notification.dto;
-
+package com.myce.notification.dto.response;
 
 import lombok.Getter;
 

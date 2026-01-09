@@ -1,6 +1,6 @@
 package com.myce.notification.controller;
 
-import com.myce.notification.dto.NotificationResponseList;
+import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

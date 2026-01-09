@@ -1,4 +1,4 @@
-package com.myce.notification.dto;
+package com.myce.notification.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

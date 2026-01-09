@@ -37,6 +37,7 @@ public class SseServiceImpl implements SseService {
 
         return sseEmitter;
     }
+
     public void notifyMemberViaSseEmitters(Long memberId, String content) {
         List<SseEmitter> emitters = emitterRepository
                 .findAllSseEmitterByMemberId(String.valueOf(memberId));

@@ -1,4 +1,4 @@
-package com.myce.notification.dto;
+package com.myce.notification.dto.response;
 
 import com.myce.notification.document.type.NotificationTargetType;
 import com.myce.notification.document.type.NotificationType;
