@@ -44,15 +44,4 @@ public class NotificationMapper {
                 .build();
     }
 
-    public NotificationResponseList toResponseList(Page<Notification> pages) {
-        NotificationResponseList responseList =
-                new NotificationResponseList(pages.getNumber()+1, pages.getTotalPages());
-
-        for (Notification notification : pages.getContent()) {
-            responseList.getNotifications().add(toResponse(notification));
-        }
-
-
-        return responseList;
-    }
 }

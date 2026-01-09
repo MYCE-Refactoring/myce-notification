@@ -1,10 +1,14 @@
 package com.myce.notification.controller;
 
+import com.myce.global.dto.CustomUserDetails;
+import com.myce.notification.dto.response.NotificationResponse;
 import com.myce.notification.dto.response.NotificationResponseList;
+import com.myce.notification.dto.response.PageResponse;
 import com.myce.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,13 +21,15 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @GetMapping
-    public ResponseEntity<NotificationResponseList> getNotifications(
-            @RequestParam(required = false, defaultValue = "0") int page
-    ) {
-        Long memberId = 1L;
-        NotificationResponseList list =
-                notificationService.getNotificationsByMemberId(memberId, page);
-        return ResponseEntity.ok(list);
+    public ResponseEntity<PageResponse<NotificationResponse>> getNotifications(
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+
+        Long memberId = userDetails.getMemberId();
+
+        return ResponseEntity.ok(
+                notificationService.getNotificationsByMemberId(memberId, page)
+        );
     }
 
 
