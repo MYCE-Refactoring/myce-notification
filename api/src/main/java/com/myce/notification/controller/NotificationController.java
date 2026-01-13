@@ -2,7 +2,6 @@ package com.myce.notification.controller;
 
 import com.myce.global.dto.CustomUserDetails;
 import com.myce.notification.dto.response.NotificationResponse;
-import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.dto.response.PageResponse;
 import com.myce.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;

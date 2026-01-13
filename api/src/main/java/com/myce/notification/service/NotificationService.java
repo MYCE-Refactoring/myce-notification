@@ -2,7 +2,6 @@ package com.myce.notification.service;
 
 
 import com.myce.notification.dto.response.NotificationResponse;
-import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.dto.response.PageResponse;
 
 public interface NotificationService {

@@ -53,13 +53,6 @@ public class InternalServiceImpl implements InternalService {
 
         notificationRepository.save(notification);
 
-//        // SSE 실시간 알림 전송
-//        String message = String.format(
-//                "{\"type\":\"%s\",\"message\":\"%s\"}",
-//                type.name(),
-//                content
-//        );
-
         SaveNotificationRequest req = SaveNotificationRequest.builder()
                 .memberId(memberId)
                 .type(type.name())
@@ -70,6 +63,7 @@ public class InternalServiceImpl implements InternalService {
                 .uri(uriBuilder -> uriBuilder
                         .path("/api/sse/notify")
                         .build())
+                .header("X-Internal-Auth", "internal-notifications")
                 .body(req)
                 .retrieve()
                 .toBodilessEntity();
