@@ -4,8 +4,6 @@ import com.myce.notification.document.Notification;
 import com.myce.notification.document.type.NotificationTargetType;
 import com.myce.notification.document.type.NotificationType;
 import com.myce.notification.dto.response.NotificationResponse;
-import com.myce.notification.dto.response.NotificationResponseList;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @Component
