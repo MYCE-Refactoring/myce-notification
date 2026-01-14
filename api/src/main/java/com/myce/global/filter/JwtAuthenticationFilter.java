@@ -34,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
 
         if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE) && !authValue.equals(INTERNAL_AUTH_VALUE))) {
-            log.info("Not exist auth value. authValue={}", authValue);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
@@ -76,15 +75,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // 다음 필터로
         filterChain.doFilter(request, response);
-    }
-
-
-    private void setErrorResponse(HttpServletResponse response, String code) throws IOException {
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setContentType("application/json;charset=UTF-8");
-
-        Map<String, String> body = Map.of("code", code);
-        log.info("[JwtAuthenticationFilter] Set error response: {}", body);
-        new ObjectMapper().writeValue(response.getWriter(), body);
     }
 }

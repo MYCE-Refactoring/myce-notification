@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8013
   forward-headers-strategy: native
 
 logging:
@@ -20,11 +20,14 @@ spring:
       max-request-size: 10MB
   config: # load .env variables
     import:
-      - optional:file:${PWD}/.env[.properties]
-      - optional:file:${PWD}/../.env[.properties]
       - optional:file:./.env[.properties]
       - optional:file:.env[.properties]
       - optional:file:../.env[.properties]
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 springdoc:
   swagger-ui:
@@ -32,3 +35,8 @@ springdoc:
     persistAuthorization: true
   api-docs:
     path: /v3/api-docs
+
+app:
+  kafka:
+    topics:
+      notification-sse: notification.sse
