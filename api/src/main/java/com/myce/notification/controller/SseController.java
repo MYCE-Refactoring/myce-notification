@@ -1,7 +1,7 @@
 package com.myce.notification.controller;
 
 import com.myce.global.dto.CustomUserDetails;
-import com.myce.notification.dto.request.SaveNotificationRequest;
+import com.myce.notification.dto.request.SendNotificationRequest;
 import com.myce.notification.service.SseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class SseController {
     }
 
     @PostMapping("/api/notifications/sse/notify")
-    public ResponseEntity<Void> notify(@RequestBody SaveNotificationRequest req) {
+    public ResponseEntity<Void> notify(@RequestBody SendNotificationRequest req) {
         sseService.notifyMemberViaSseEmitters(req.getMemberId(), req.getContent());
         return ResponseEntity.ok().build();
     }

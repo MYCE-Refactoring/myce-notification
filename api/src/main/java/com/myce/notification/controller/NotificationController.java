@@ -31,7 +31,6 @@ public class NotificationController {
         );
     }
 
-
     @PutMapping("/{notificationId}/read")
     public ResponseEntity<Void> markAsRead(
             @PathVariable String notificationId,
