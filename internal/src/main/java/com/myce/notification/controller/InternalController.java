@@ -6,49 +6,52 @@ import com.myce.notification.dto.request.EventReminderRequest;
 import com.myce.notification.dto.request.ExpoStartRequest;
 import com.myce.notification.dto.request.PaymentCompleteRequest;
 import com.myce.notification.dto.request.QrIssuedRequest;
-import com.myce.notification.service.NoticeInternalService;
+import com.myce.notification.repository.NotificationRepository;
+import com.myce.notification.service.InternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/internal/notifications")
 @RequiredArgsConstructor
 @Slf4j
-public class NoticeInternalController {
+public class InternalController {
 
-    private final NoticeInternalService noticeInternalService;
+    private final InternalService internalService;
 
     @PostMapping("/qr-issued")
     public void sendQrIssued(@RequestBody QrIssuedRequest req) {
         log.info("QR-Issued 요청 수신됨: memberId={}, reservationId={}, expoTitle={}, reissue={}",
                 req.getMemberId(), req.getReservationId(), req.getExpoTitle(), req.isReissue());
-        noticeInternalService.sendQrIssuedNotification(req);
+        internalService.sendQrIssuedNotification(req);
     }
 
     @PostMapping("/payment-completed")
     public void sendPaymentComplete(@RequestBody PaymentCompleteRequest req) {
-        noticeInternalService.sendPaymentCompleteNotification(req);
+        internalService.sendPaymentCompleteNotification(req);
     }
 
     @PostMapping("/event-reminder")
     public void sendEventHourReminder(@RequestBody EventReminderRequest req) {
-        noticeInternalService.sendEventHourReminderNotification(req);
+        internalService.sendEventHourReminderNotification(req);
     }
 
     @PostMapping("/expo-started")
     public void sendExpoStart(@RequestBody ExpoStartRequest req) {
-        noticeInternalService.sendExpoStartNotification(req);
+        internalService.sendExpoStartNotification(req);
     }
 
     @PostMapping("/expo-status-changed")
     public void sendExpoStatusChange(@RequestBody ExpoStatusChangeCommand command) {
-        noticeInternalService.sendExpoStatusChangeNotification(command);
+        internalService.sendExpoStatusChangeNotification(command);
     }
 
     @PostMapping("/ad-status-changed")
     public void sendAdStatusChange(@RequestBody AdStatusChangeCommand command) {
-        noticeInternalService.sendAdvertisementStatusChangeNotification(command);
+        internalService.sendAdvertisementStatusChangeNotification(command);
     }
 
 }

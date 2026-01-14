@@ -31,19 +31,18 @@ public class NotificationController {
         );
     }
 
+
     @PutMapping("/{notificationId}/read")
     public ResponseEntity<Void> markAsRead(
-            @PathVariable String notificationId,
-            @AuthenticationPrincipal CustomUserDetails userDetails) {
-        Long memberId = userDetails.getMemberId();
+            @PathVariable String notificationId) {
+        Long memberId = 1L;
         notificationService.markAsRead(notificationId, memberId);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/read-all")
-    public ResponseEntity<Void> markAllAsRead(
-            @AuthenticationPrincipal CustomUserDetails userDetails) {
-        Long memberId = userDetails.getMemberId();
+    public ResponseEntity<Void> markAllAsRead() {
+        Long memberId = 1L;
         notificationService.markAllAsRead(memberId);
         return ResponseEntity.ok().build();
     }

@@ -20,6 +20,8 @@ import java.time.LocalDateTime;
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
+//    private final SseService sseService;
+//    private final MessageTemplateSettingRepository messageTemplateSettingRepository;
     private final NotificationMapper notificationMapper;
 
     @Override

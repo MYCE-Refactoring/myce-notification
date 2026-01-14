@@ -1,6 +1,6 @@
 package com.myce.notification.service.impl;
 
-import com.myce.notification.service.EmitterRepository;
+import com.myce.notification.repository.EmitterRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;

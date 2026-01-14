@@ -1,6 +1,6 @@
 package com.myce.notification.service.impl;
 
-import com.myce.notification.service.EmitterRepository;
+import com.myce.notification.repository.EmitterRepository;
 import com.myce.notification.service.SseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,8 +17,6 @@ import java.util.List;
 public class SseServiceImpl implements SseService {
     private final EmitterRepository emitterRepository;
     private static final Long DEFAULT_TIMEOUT = 60L * 1000 * 30;
-    private static final String SSE_CONNECTED = "SSE connected, emitterId: ";
-    private static final String KEEP_ALIVE = "keep-alive";
 
     public SseEmitter subscribe(Long memberId) {
         String emitterId = memberId + "_" + System.currentTimeMillis();
@@ -35,7 +33,7 @@ public class SseServiceImpl implements SseService {
             emitterRepository.removeSseEmitter(emitterId);
         });
 
-        sendMessage(sseEmitter, SSE_CONNECTED + emitterId);
+        sendMessage(sseEmitter,"", "SSE connected, emitterId: " + emitterId);
 
         return sseEmitter;
     }
@@ -44,7 +42,7 @@ public class SseServiceImpl implements SseService {
         List<SseEmitter> emitters = emitterRepository
                 .findAllSseEmitterByMemberId(String.valueOf(memberId));
         emitters.forEach(sseEmitter -> {
-            sendMessage(sseEmitter, content);
+            sendMessage(sseEmitter,"", content);
         });
     }
 
@@ -53,13 +51,14 @@ public class SseServiceImpl implements SseService {
         log.info("Sending keep-alive to all SseEmitter");
 
         emitterRepository.findAll().forEach((emitter) -> {
-            sendMessage(emitter, KEEP_ALIVE);
+            sendMessage(emitter, "", "keep-alive");
         });
     }
 
-    private void sendMessage(SseEmitter sseEmitter, String data) {
+    private void sendMessage(SseEmitter sseEmitter, String eventName, String data) {
         try {
             sseEmitter.send(SseEmitter.event()
+                    .name(eventName) // 이벤트 이름 추가
                     .data(data));
         } catch (IOException e) {
             sseEmitter.completeWithError(e);
