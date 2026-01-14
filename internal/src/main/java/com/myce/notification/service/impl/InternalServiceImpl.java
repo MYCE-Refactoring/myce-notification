@@ -37,6 +37,19 @@ public class InternalServiceImpl implements InternalService {
     private final RestClient restClient;
     private final MessageTemplateSettingRepository messageTemplateSettingRepository;
 
+    /**
+     * 회원에게 보낼 알림을 생성하여 저장하고 내부 SSE 알림 API에 전송한다.
+     *
+     * 데이터베이스에 Notification 엔티티를 저장한 후, SaveNotificationRequest를 구성해
+     * "/api/sse/notify" 엔드포인트로 POST 요청을 보내 SSE 알림 전송을 트리거한다.
+     *
+     * @param memberId     알림을 받을 회원의 ID
+     * @param targetId     알림의 대상 엔터티 ID(예: 예약 ID 또는 전시 ID)
+     * @param title        알림 제목
+     * @param content      알림 내용(템플릿 치환이 적용된 최종 문자열)
+     * @param type         알림의 도메인 유형 (NotificationType)
+     * @param targetType   알림의 대상 타입 (NotificationTargetType)
+     */
     @Override
     public void saveNotification(Long memberId, Long targetId, String title, String content,
                                  NotificationType type, NotificationTargetType targetType) {

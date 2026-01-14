@@ -22,6 +22,16 @@ public class SecurityConfig {
     @Value("internal-notifications")
     private String INTERNAL_AUTH_VALUE;
 
+    /**
+     * HTTP 보안을 구성하고 이를 바탕으로 SecurityFilterChain 빈을 생성한다.
+     *
+     * 구성 내용: CSRF·폼 로그인·HTTP Basic 비활성화, 세션을 무상태로 설정, 커스텀 JwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 앞에 추가,
+     * 지정된 엔드포인트들에 대해 허용 규칙을 적용하고 그 외 요청은 인증을 요구함.
+     *
+     * @param http the HttpSecurity 인스턴스 (보안 설정 대상)
+     * @return 구성된 SecurityFilterChain
+     * @throws Exception 필터 체인 구성 또는 빌드 중 예외가 발생하면 던져짐
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
