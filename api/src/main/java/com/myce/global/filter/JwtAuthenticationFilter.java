@@ -34,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
 
         if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE) && !authValue.equals(INTERNAL_AUTH_VALUE))) {
-            log.info("Not exist auth value. authValue={}", authValue);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
