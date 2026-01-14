@@ -95,7 +95,6 @@ public class NoticeInternalServiceImpl implements NoticeInternalService {
         if (memberIds.isEmpty()) {
             return;
         }
-
         MessageFormat format = messageTemplateService.renderMessage(EXPO_REMINDER,
                 Map.of("expoTitle", expoTitle));
 
@@ -103,7 +102,6 @@ public class NoticeInternalServiceImpl implements NoticeInternalService {
         String title = format.subject();
 
         for (Long memberId : memberIds) {
-
             saveNotification(
                     memberId,
                     expoId,
