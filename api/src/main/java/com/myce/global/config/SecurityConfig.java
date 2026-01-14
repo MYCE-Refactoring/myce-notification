@@ -16,10 +16,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${gateway.auth.value}")
+    @Value("local-gateway")
     private String GATEWAY_AUTH_VALUE;
 
-    @Value("${internal.auth.value}")
+    @Value("internal-notifications")
     private String INTERNAL_AUTH_VALUE;
 
     @Bean

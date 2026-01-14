@@ -1,4 +1,4 @@
-package com.myce.notification.service;
+package com.myce.notification.repository;
 
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 

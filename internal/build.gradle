@@ -2,8 +2,6 @@ dependencies {
     implementation project(':domain')
     implementation project(':common')
 
-
-    implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
