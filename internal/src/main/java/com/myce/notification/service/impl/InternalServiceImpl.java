@@ -17,8 +17,10 @@ import com.myce.notification.repository.NotificationRepository;
 import com.myce.notification.service.InternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
+
 
 import java.util.List;
 
@@ -34,8 +36,11 @@ public class InternalServiceImpl implements InternalService {
 
 
     private final NotificationRepository notificationRepository;
-    private final RestClient restClient;
+    private final KafkaTemplate<String, SaveNotificationRequest> kafkaTemplate;
     private final MessageTemplateSettingRepository messageTemplateSettingRepository;
+
+    @Value("${app.kafka.topics.notification-sse}")
+    private String notificationSseTopic;
 
     @Override
     public void saveNotification(Long memberId, Long targetId, String title, String content,
@@ -59,14 +64,7 @@ public class InternalServiceImpl implements InternalService {
                 .content(content)
                 .build();
 
-        restClient.post()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/api/sse/notify")
-                        .build())
-                .header("X-Internal-Auth", "internal-notifications")
-                .body(req)
-                .retrieve()
-                .toBodilessEntity();
+        kafkaTemplate.send(notificationSseTopic, String.valueOf(memberId), req);
 
 
         log.info("알림 저장 및 SSE 전송 완료 - 회원 ID: {}, 제목: {}, 타입: {}", memberId, title, type);
