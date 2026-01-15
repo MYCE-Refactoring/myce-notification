@@ -1,17 +1,12 @@
 package com.myce.notification.service.impl;
 
-import com.myce.notification.document.type.AdvertisementStatus;
-import com.myce.notification.document.type.ExpoStatus;
-import com.myce.notification.document.Notification;
 import com.myce.notification.dto.response.NotificationResponse;
-import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.dto.response.PageResponse;
 import com.myce.notification.repository.NotificationRepository;
 import com.myce.notification.service.NotificationService;
 import com.myce.notification.service.mapper.NotificationMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,8 +20,6 @@ import java.time.LocalDateTime;
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
-//    private final SseService sseService;
-//    private final MessageTemplateSettingRepository messageTemplateSettingRepository;
     private final NotificationMapper notificationMapper;
 
     @Override

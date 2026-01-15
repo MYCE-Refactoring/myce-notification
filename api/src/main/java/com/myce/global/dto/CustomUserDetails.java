@@ -15,30 +15,24 @@ public class CustomUserDetails implements UserDetails {
 
     private final LoginType loginType;
     private final Long memberId;
-    private final String name;
-    private final String loginId;
-    private final String password;
     private final String role;
 
     @Builder
-    public CustomUserDetails(LoginType loginType, Long memberId, String name, String loginId,
-                             String password, String role) {
+    public CustomUserDetails(LoginType loginType, Long memberId,String role) {
         this.loginType = loginType;
         this.memberId = memberId;
-        this.loginId = loginId;
-        this.password = password;
-        this.name = name;
         this.role = role;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+    public String getPassword() { return "";}
 
     @Override
-    public String getUsername() {
-        return this.name;
+    public String getUsername() { return "";}
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     public Long getUserId(){
