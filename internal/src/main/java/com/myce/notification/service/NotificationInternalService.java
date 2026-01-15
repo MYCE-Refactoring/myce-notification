@@ -6,7 +6,7 @@ import com.myce.notification.dto.request.ExpoStartRequest;
 import com.myce.notification.dto.request.PaymentCompleteRequest;
 import com.myce.notification.dto.request.QrIssuedRequest;
 
-public interface NoticeInternalService {
+public interface NotificationInternalService {
 
     void sendQrIssuedNotification(QrIssuedRequest req);
     void sendExpoStartNotification(ExpoStartRequest req);

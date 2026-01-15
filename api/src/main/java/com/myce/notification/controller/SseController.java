@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @RestController
+@RequestMapping("/api/notifications/sse")
 @RequiredArgsConstructor
 @Slf4j
 public class SseController {
     private final SseService sseService;
 
-    @GetMapping(value = "/api/notifications/sse/subscribe", produces = "text/event-stream")
+    @GetMapping(value = "/subscribe", produces = "text/event-stream")
     public ResponseEntity<SseEmitter> subscribe(@AuthenticationPrincipal CustomUserDetails userDetails) {
 
         Long memberId = userDetails.getMemberId();
         return ResponseEntity.ok(sseService.subscribe(memberId));
     }
 
-    @PostMapping("/api/notifications/sse/notify")
+    @PostMapping("/notify")
     public ResponseEntity<Void> notify(@RequestBody SendNotificationRequest req) {
         sseService.notifyMemberViaSseEmitters(req.getMemberId(), req.getContent());
         return ResponseEntity.ok().build();

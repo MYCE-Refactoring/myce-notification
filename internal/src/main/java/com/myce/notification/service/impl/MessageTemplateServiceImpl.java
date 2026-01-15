@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-import static com.myce.notification.entity.type.MessageTemplateCode.EVENT_REMINDER;
-
 @RequiredArgsConstructor
 @Service
 public class MessageTemplateServiceImpl implements MessageTemplateService {
@@ -33,6 +31,7 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
         for (Map.Entry<String, String> entry : variables.entrySet()) {
             content = content.replace("{" + entry.getKey() + "}", entry.getValue());
         }
+
         return new MessageFormat(template.getSubject(), content);
     }
 }

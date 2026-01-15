@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentCompleteRequest {
-    private Long memberId;
-    private Long reservationId;
-    private String expoTitle;
-    private String paymentAmount;
+public class EmailSendRequest {
+
+    String to;
+    String subject;
+    String content;
 }
