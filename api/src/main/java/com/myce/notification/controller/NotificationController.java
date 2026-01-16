@@ -19,6 +19,7 @@ public class NotificationController {
 
     private final NotificationApiService notificationService;
 
+
     @GetMapping
     public ResponseEntity<PageResponse<NotificationResponse>> getNotifications(
             @RequestParam(required = false, defaultValue = "0") int page,
@@ -30,7 +31,6 @@ public class NotificationController {
                 notificationService.getNotificationsByMemberId(memberId, page)
         );
     }
-
     @PutMapping("/{notificationId}/read")
     public ResponseEntity<Void> markAsRead(
             @PathVariable String notificationId,

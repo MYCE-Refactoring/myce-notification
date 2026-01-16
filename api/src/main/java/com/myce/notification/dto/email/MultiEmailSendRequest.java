@@ -1,16 +1,17 @@
-package com.myce.notification.dto.request;
+package com.myce.notification.dto.email;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class SaveNotificationRequest {
-    Long memberId;
-    String type;
+public class MultiEmailSendRequest {
+
+    List<String> recipients;
+    String subject;
     String content;
 }
