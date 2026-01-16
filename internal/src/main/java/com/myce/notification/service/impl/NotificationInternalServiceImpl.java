@@ -6,6 +6,10 @@ import com.myce.notification.document.type.NotificationTargetType;
 import com.myce.notification.document.type.NotificationType;
 import com.myce.notification.dto.*;
 import com.myce.notification.dto.request.*;
+import com.myce.notification.dto.request.notification.EventReminderRequest;
+import com.myce.notification.dto.request.notification.ExpoStartRequest;
+import com.myce.notification.dto.request.notification.PaymentCompleteRequest;
+import com.myce.notification.dto.request.notification.QrIssuedRequest;
 import com.myce.notification.entity.type.MessageTemplateCode;
 import com.myce.notification.repository.MessageTemplateSettingRepository;
 import com.myce.notification.repository.NotificationRepository;
@@ -31,7 +35,6 @@ public class NotificationInternalServiceImpl implements NotificationInternalServ
 
     private final NotificationRepository notificationRepository;
     private final KafkaTemplate<String, SendNotificationRequest> kafkaTemplate;
-    private final MessageTemplateSettingRepository messageTemplateSettingRepository;
     private final MessageTemplateService messageTemplateService;
 
     @Value("${app.kafka.topics.notification-sse}")

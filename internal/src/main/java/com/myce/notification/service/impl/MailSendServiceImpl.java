@@ -1,8 +1,8 @@
 package com.myce.notification.service.impl;
 
-import com.myce.notification.dto.request.EmailSendRequest;
-import com.myce.notification.dto.request.MultiEmailSendRequest;
-import com.myce.notification.service.EmailSendService;
+import com.myce.notification.dto.request.mail.EmailSendRequest;
+import com.myce.notification.dto.request.mail.MultiEmailSendRequest;
+import com.myce.notification.service.MailSendService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EmailSendServiceImpl implements EmailSendService {
+public class MailSendServiceImpl implements MailSendService {
 
     private final JavaMailSender mailSender;
 

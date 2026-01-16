@@ -2,10 +2,10 @@ package com.myce.notification.controller;
 
 
 import com.myce.notification.dto.*;
-import com.myce.notification.dto.request.EventReminderRequest;
-import com.myce.notification.dto.request.ExpoStartRequest;
-import com.myce.notification.dto.request.PaymentCompleteRequest;
-import com.myce.notification.dto.request.QrIssuedRequest;
+import com.myce.notification.dto.request.notification.EventReminderRequest;
+import com.myce.notification.dto.request.notification.ExpoStartRequest;
+import com.myce.notification.dto.request.notification.PaymentCompleteRequest;
+import com.myce.notification.dto.request.notification.QrIssuedRequest;
 import com.myce.notification.service.NotificationInternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

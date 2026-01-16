@@ -1,4 +1,4 @@
-package com.myce.notification.dto.request;
+package com.myce.notification.dto.request.notification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmailSendRequest {
-
-    String to;
-    String subject;
-    String content;
+public class ExpoStartRequest {
+    List<Long> userIds;
+    String expoTitle;
+    Long expoId;
 }

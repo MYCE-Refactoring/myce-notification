@@ -1,11 +1,9 @@
 package com.myce.notification.service;
 
-import com.myce.notification.dto.request.EmailSendRequest;
-import com.myce.notification.dto.request.MultiEmailSendRequest;
+import com.myce.notification.dto.request.mail.EmailSendRequest;
+import com.myce.notification.dto.request.mail.MultiEmailSendRequest;
 
-import java.util.List;
-
-public interface EmailSendService {
+public interface MailSendService {
     void sendMail(EmailSendRequest req);
     void sendMailToMultiple(MultiEmailSendRequest req);
     void sendSupportMail(EmailSendRequest req);

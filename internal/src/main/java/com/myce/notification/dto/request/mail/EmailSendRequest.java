@@ -1,17 +1,15 @@
-package com.myce.notification.dto.request;
+package com.myce.notification.dto.request.mail;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MultiEmailSendRequest {
+public class EmailSendRequest {
 
-    List<String> recipients;
+    String to;
     String subject;
     String content;
 }
