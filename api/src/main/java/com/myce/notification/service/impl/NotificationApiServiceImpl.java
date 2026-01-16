@@ -3,7 +3,7 @@ package com.myce.notification.service.impl;
 import com.myce.notification.dto.response.NotificationResponse;
 import com.myce.notification.dto.response.PageResponse;
 import com.myce.notification.repository.NotificationRepository;
-import com.myce.notification.service.NotificationService;
+import com.myce.notification.service.NotificationApiService;
 import com.myce.notification.service.mapper.NotificationMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class NotificationServiceImpl implements NotificationService {
+public class NotificationApiServiceImpl implements NotificationApiService {
 
     private final NotificationRepository notificationRepository;
     private final NotificationMapper notificationMapper;

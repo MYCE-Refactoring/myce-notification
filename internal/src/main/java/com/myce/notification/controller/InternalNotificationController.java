@@ -6,7 +6,7 @@ import com.myce.notification.dto.request.EventReminderRequest;
 import com.myce.notification.dto.request.ExpoStartRequest;
 import com.myce.notification.dto.request.PaymentCompleteRequest;
 import com.myce.notification.dto.request.QrIssuedRequest;
-import com.myce.notification.service.NoticeInternalService;
+import com.myce.notification.service.NotificationInternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/internal/notifications")
 @RequiredArgsConstructor
 @Slf4j
-public class NoticeInternalController {
+public class InternalNotificationController {
 
-    private final NoticeInternalService noticeInternalService;
+    private final NotificationInternalService noticeInternalService;
 
     @PostMapping("/qr-issued")
     public void sendQrIssued(@RequestBody QrIssuedRequest req) {

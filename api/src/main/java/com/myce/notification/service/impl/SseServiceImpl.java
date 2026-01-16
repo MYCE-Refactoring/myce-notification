@@ -4,6 +4,7 @@ import com.myce.notification.service.EmitterRepository;
 import com.myce.notification.service.SseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -16,9 +17,12 @@ import java.util.List;
 @Slf4j
 public class SseServiceImpl implements SseService {
     private final EmitterRepository emitterRepository;
-    private static final Long DEFAULT_TIMEOUT = 60L * 1000 * 30;
     private static final String SSE_CONNECTED = "SSE connected, emitterId: ";
     private static final String KEEP_ALIVE = "keep-alive";
+
+    @Value("${SSE.DEFAULT.TIMEOUT}")
+    private Long DEFAULT_TIMEOUT;
+
 
     public SseEmitter subscribe(Long memberId) {
         String emitterId = memberId + "_" + System.currentTimeMillis();

@@ -6,15 +6,11 @@ import com.myce.notification.document.type.NotificationTargetType;
 import com.myce.notification.document.type.NotificationType;
 import com.myce.notification.dto.*;
 import com.myce.notification.dto.request.*;
-import com.myce.notification.entity.MessageTemplateSetting;
-import com.myce.notification.entity.type.ChannelType;
 import com.myce.notification.entity.type.MessageTemplateCode;
-import com.myce.notification.exception.CustomErrorCode;
-import com.myce.notification.exception.CustomException;
 import com.myce.notification.repository.MessageTemplateSettingRepository;
 import com.myce.notification.repository.NotificationRepository;
 import com.myce.notification.service.MessageTemplateService;
-import com.myce.notification.service.NoticeInternalService;
+import com.myce.notification.service.NotificationInternalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +26,7 @@ import static com.myce.notification.entity.type.MessageTemplateCode.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class NoticeInternalServiceImpl implements NoticeInternalService {
+public class NotificationInternalServiceImpl implements NotificationInternalService {
 
 
     private final NotificationRepository notificationRepository;
