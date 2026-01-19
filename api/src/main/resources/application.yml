@@ -15,10 +15,12 @@ gateway:
   auth:
     value: local-gateway
 
+
 external:
   base-url:
     core: http://localhost:8081/api/internal
-
+  auth:
+    value: internal-request
 
 internal:
   auth:

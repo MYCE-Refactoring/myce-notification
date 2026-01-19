@@ -42,9 +42,6 @@ public class SecurityConfig {
                         .requestMatchers(SecurityEndpoints.ETC_PERMIT_ALL).permitAll()
                         .anyRequest().authenticated()
                 );
-
-
-
         return http.build();
     }
 }

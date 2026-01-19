@@ -11,14 +11,14 @@ public class RestClientConfig {
     @Value("${external.base-url.core}")
     private String coreBaseUrl;
 
-    @Value("${gateway.auth.value}")
-    private String internalAuthValue;
+    @Value("${external.auth.value}")
+    private String externalAuthValue;
 
     @Bean(name = "coreClient")
     public RestClient coreClient() {
         return RestClient.builder()
                 .baseUrl(coreBaseUrl)
-                .defaultHeader("X-Internal-Auth", internalAuthValue)
+                .defaultHeader("X-Internal-Auth", externalAuthValue)
                 .build();
     }
 }

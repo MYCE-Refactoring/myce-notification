@@ -8,6 +8,10 @@ logging:
     com.myce: debug
     com.myce.common.aop.ControllerLoggingAspect: debug
 
+gateway:
+  auth:
+    value: internal-request
+
 spring:
   profiles:
     active: ${PROFILE:local} # local | product
