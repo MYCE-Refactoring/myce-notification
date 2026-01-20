@@ -1,4 +1,4 @@
-package com.myce.notification.dto.request;
+package com.myce.notification.dto.request.notification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventReminderRequest {
-    List<Long> memberIds;
-    Long expoId;
+public class ExpoStartRequest {
+    List<Long> userIds;
     String expoTitle;
-    String eventName;
-    String startTime;
+    Long expoId;
 }

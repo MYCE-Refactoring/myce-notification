@@ -1,6 +1,5 @@
 package com.myce.global.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myce.global.dto.CustomUserDetails;
 import com.myce.global.dto.type.LoginType;
 import jakarta.servlet.FilterChain;
@@ -22,7 +21,6 @@ import java.util.Map;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final String GATEWAY_AUTH_VALUE;
-    private final String INTERNAL_AUTH_VALUE;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -33,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
 
-        if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE) && !authValue.equals(INTERNAL_AUTH_VALUE))) {
+        if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE))) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }

@@ -20,13 +20,13 @@ public class SseServiceImpl implements SseService {
     private static final String SSE_CONNECTED = "SSE connected, emitterId: ";
     private static final String KEEP_ALIVE = "keep-alive";
 
-    @Value("${SSE.DEFAULT.TIMEOUT}")
+    @Value("${sse.default.timeout}")
     private Long DEFAULT_TIMEOUT;
 
 
     public SseEmitter subscribe(Long memberId) {
         String emitterId = memberId + "_" + System.currentTimeMillis();
-        SseEmitter sseEmitter = new SseEmitter(DEFAULT_TIMEOUT);
+        SseEmitter sseEmitter = new SseEmitter(DEFAULT_TIMEOUT * 60 * 1000);;
         emitterRepository.save(emitterId, sseEmitter);
 
         sseEmitter.onCompletion(() -> {

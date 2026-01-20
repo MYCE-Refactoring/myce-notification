@@ -1,14 +1,14 @@
 package com.myce.notification.service;
 
-import com.myce.notification.dto.message.MessageTemplate;
-import com.myce.notification.entity.type.UserType;
+import com.myce.notification.dto.request.message.ReservationConfirmRequest;
+import com.myce.notification.dto.request.message.ResetRequest;
+import com.myce.notification.dto.request.message.VerificationRequest;
 
 public interface MessageGenerateService {
-    MessageTemplate getMessageForVerification(String verificationName, String code, String limitTime);
+    void getMessageForVerification(VerificationRequest req);
 
-    MessageTemplate getMessageForResetPassword(String password);
+    void getMessageForResetPassword(ResetRequest req);
 
-    MessageTemplate getMessageForReservationConfirmation(String name, String expoTitle, 
-            String reservationCode, Integer quantity, String paymentAmount, UserType userType);
+    void getMessageForReservationConfirmation(ReservationConfirmRequest req);
 
 }

@@ -15,6 +15,13 @@ gateway:
   auth:
     value: local-gateway
 
+
+external:
+  base-url:
+    core: http://localhost:8081/api/internal
+  auth:
+    value: internal-request
+
 internal:
   auth:
     value: internal-notifications
@@ -40,6 +47,17 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "com.myce.notification.dto.request"
+  mail:
+    host: ${MAIL_HOST}
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls: # isActive
+            enable: true
   servlet: # file uploads
     multipart:
       max-file-size: 10MB

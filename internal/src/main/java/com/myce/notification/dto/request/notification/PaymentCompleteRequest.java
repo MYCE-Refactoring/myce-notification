@@ -1,4 +1,4 @@
-package com.myce.notification.dto.request;
+package com.myce.notification.dto.request.notification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QrIssuedRequest {
+public class PaymentCompleteRequest {
     private Long memberId;
     private Long reservationId;
     private String expoTitle;
-    private boolean isReissue;
+    private String paymentAmount;
 }

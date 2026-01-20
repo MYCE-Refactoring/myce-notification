@@ -1,10 +1,10 @@
 package com.myce.notification.service;
 
 import com.myce.notification.dto.*;
-import com.myce.notification.dto.request.EventReminderRequest;
-import com.myce.notification.dto.request.ExpoStartRequest;
-import com.myce.notification.dto.request.PaymentCompleteRequest;
-import com.myce.notification.dto.request.QrIssuedRequest;
+import com.myce.notification.dto.request.notification.EventReminderRequest;
+import com.myce.notification.dto.request.notification.ExpoStartRequest;
+import com.myce.notification.dto.request.notification.PaymentCompleteRequest;
+import com.myce.notification.dto.request.notification.QrIssuedRequest;
 
 public interface NotificationInternalService {
 

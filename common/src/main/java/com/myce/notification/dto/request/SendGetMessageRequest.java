@@ -16,4 +16,5 @@ public class SendGetMessageRequest {
     MessageTemplateCode code;
     Boolean isUseImage;
     Context context;
+    //123
 }

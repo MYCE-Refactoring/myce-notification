@@ -36,16 +36,20 @@ public class MessageCommonService {
     }
 
     private String getTargetFile(MessageTemplateCode code, boolean isUseImage) {
-        if(code.equals(MessageTemplateCode.RESET_PASSWORD)) {
+
+        if (code.equals(MessageTemplateCode.RESET_PASSWORD)) {
             return "mail/mail-password";
         }
 
-        if(code.equals(MessageTemplateCode.RESERVATION_CONFIRM)) {
+        if (code.equals(MessageTemplateCode.RESERVATION_CONFIRM)) {
             return "mail/mail-reservation";
         }
 
-        return isUseImage ? "mail/mail-image" : "mail/mail-code";
+        return isUseImage
+                ? "mail/mail-image"
+                : "mail/mail-basic";
     }
+
 
     private Map<String, String> parseJsonContent(String jsonContent) {
         try {
