@@ -24,7 +24,12 @@ public class InternalAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
+        log.info("[InternalAuthFilter] URI={}, X-Internal-Auth={}",
+                request.getRequestURI(), authValue);
+
         if (authValue == null || !authValue.equals(internalAuthValue)) {
+            log.warn("[InternalAuthFilter] UNAUTHORIZED - header={}, expected={}",
+                    authValue, internalAuthValue);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
