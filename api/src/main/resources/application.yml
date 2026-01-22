@@ -18,7 +18,7 @@ gateway:
 
 external:
   base-url:
-    core: http://localhost:8081/api/internal
+    core: http://localhost:8082/internal
   auth:
     value: internal-request
 
