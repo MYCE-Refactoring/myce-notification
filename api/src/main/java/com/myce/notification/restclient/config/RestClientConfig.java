@@ -1,8 +1,11 @@
 package com.myce.notification.restclient.config;
 
+import com.myce.notification.exception.CustomErrorCode;
+import com.myce.notification.exception.CustomException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.client.RestClient;
 
 @Configuration
@@ -19,6 +22,18 @@ public class RestClientConfig {
         return RestClient.builder()
                 .baseUrl(coreBaseUrl)
                 .defaultHeader("X-Internal-Auth", externalAuthValue)
+                .defaultStatusHandler(
+                        HttpStatusCode::is4xxClientError,
+                        (request, response) -> {
+                            throw new CustomException( CustomErrorCode.CORE_CLIENT_ERROR);
+                        }
+                )
+                .defaultStatusHandler(
+                        HttpStatusCode::is5xxServerError,
+                        (request, response) -> {
+                            throw new CustomException(CustomErrorCode.CORE_SERVER_ERROR);
+                        }
+                )
                 .build();
     }
 }

@@ -2,6 +2,8 @@ package com.myce.notification.service.impl;
 
 import com.myce.notification.dto.request.mail.EmailSendRequest;
 import com.myce.notification.dto.request.mail.MultiEmailSendRequest;
+import com.myce.notification.exception.CustomErrorCode;
+import com.myce.notification.exception.CustomException;
 import com.myce.notification.service.MailSendService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -33,6 +35,8 @@ public class MailSendServiceImpl implements MailSendService {
             log.info("System email sent successfully. from=noreply@myce.live");
         } catch (MessagingException | UnsupportedEncodingException me) {
             log.error("Failed to send system email. from=noreply@myce.live");
+            throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
+
         }
     }
 
@@ -45,7 +49,7 @@ public class MailSendServiceImpl implements MailSendService {
             messageHelper.setFrom("noreply@myce.live", "MYCE");
 
 
-            String[] toArray = recipients .toArray(new String[0]);
+            String[] toArray = recipients.toArray(new String[0]);
             messageHelper.setBcc(toArray);
 
             messageHelper.setSubject(req.getSubject());
@@ -55,6 +59,8 @@ public class MailSendServiceImpl implements MailSendService {
             log.info("Email sent successfully. from=noreply@myce.live, recipients={}명, subject={}", recipients.size(), subject);
         } catch (MessagingException | UnsupportedEncodingException me) {
             log.error("Failed to send email. recipients={}명, subject={}", recipients.size(), subject);
+            throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
+
         }
     }
 
@@ -70,6 +76,8 @@ public class MailSendServiceImpl implements MailSendService {
             log.info("Support email sent successfully");
         } catch (MessagingException | UnsupportedEncodingException me) {
             log.error("Failed to send support email. from=support@myce.live");
+            throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
+
         }
     }
 }
