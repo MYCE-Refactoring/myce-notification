@@ -32,7 +32,7 @@ public class RestClientService {
 
                     return ResponseEntity
                             .status(res.getStatusCode())
-                            .body(responseBody);  // 에러 시 null
+                            .body(responseBody);
                 });
     }
 
