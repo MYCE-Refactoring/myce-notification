@@ -99,18 +99,21 @@ public class NotificationInternalServiceImpl implements NotificationInternalServ
 
         String content = format.content();
         String title = format.subject();
+        int failCount = 0;
 
         for (Long memberId : memberIds) {
-            saveNotification(
-                    memberId,
-                    expoId,
-                    title,
-                    content,
-                    NotificationType.EXPO_REMINDER,
-                    NotificationTargetType.EXPO
-            );
-            sendNotification(memberId, NotificationType.EXPO_REMINDER, content);
+            saveNotification(memberId, expoId, title, content, NotificationType.EXPO_REMINDER, NotificationTargetType.EXPO );
+            try {
+                sendNotification( memberId, NotificationType.EXPO_REMINDER, content );
+            } catch (Exception e) {
+                failCount++;
+            }
         }
+
+        if (failCount > 0) {
+            log.error("알림 전송 실패 건수={}", failCount);
+        }
+
     }
 
     @Override
@@ -134,6 +137,7 @@ public class NotificationInternalServiceImpl implements NotificationInternalServ
 
         String content = format.content();
         String subject = format.subject();
+        int failCount = 0;
 
         for (Long memberId : memberIds) {
             saveNotification(
@@ -143,8 +147,15 @@ public class NotificationInternalServiceImpl implements NotificationInternalServ
                     content,
                     NotificationType.EVENT_REMINDER,
                     NotificationTargetType.EXPO);
+            try{
+            sendNotification(memberId, NotificationType.EVENT_REMINDER, content);}
+            catch (Exception e) {
+                failCount++;
+            }
+        }
 
-            sendNotification(memberId, NotificationType.EVENT_REMINDER, content);
+        if (failCount > 0) {
+            log.error("알림 전송 실패 건수={}", failCount);
         }
     }
 

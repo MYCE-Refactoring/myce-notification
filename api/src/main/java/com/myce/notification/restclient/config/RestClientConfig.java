@@ -1,8 +1,11 @@
 package com.myce.notification.restclient.config;
 
+import com.myce.notification.exception.CustomErrorCode;
+import com.myce.notification.exception.CustomException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.client.RestClient;
 
 @Configuration

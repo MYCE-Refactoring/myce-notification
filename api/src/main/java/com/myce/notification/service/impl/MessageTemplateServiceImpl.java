@@ -75,9 +75,11 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
                 build();
 
         String template = "";
+
         if(templateSetting.getChannelType().equals(ChannelType.EMAIL)) {
             template = messageCommonService.getFullMessage(req);
         }
+
         return messageTemplateMapper.toTemplateResponse(templateSetting, template);
     }
 }

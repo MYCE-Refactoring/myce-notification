@@ -24,7 +24,7 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
 
         MessageTemplateSetting template = messageTemplateSettingRepository.findByCodeAndChannelType(
                         templateCode, ChannelType.NOTIFICATION)
-                .orElseThrow(() -> new CustomException( CustomErrorCode.NOT_EXIST_MESSAGE_TEMPLATE));
+                .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_EXIST_MESSAGE_TEMPLATE));
 
         String content = template.getContent();
 

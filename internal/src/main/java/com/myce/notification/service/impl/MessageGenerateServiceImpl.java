@@ -53,6 +53,7 @@ public class MessageGenerateServiceImpl implements MessageGenerateService {
                 build();
 
         String message = messageCommonService.getFullMessage(request);
+
         mailSendService.sendMail(new EmailSendRequest(email, messageTemplate.getSubject(), message));
 
     }

@@ -3,6 +3,8 @@ package com.myce.notification.service.impl;
 import com.myce.global.dto.type.LoginType;
 import com.myce.notification.common.ExpoAdminPermission;
 import com.myce.notification.dto.email.MailSendContextResponse;
+import com.myce.notification.exception.CustomErrorCode;
+import com.myce.notification.exception.CustomException;
 import com.myce.notification.restclient.component.EnsureRequestComponent;
 import com.myce.notification.service.MailAdminService;
 import com.myce.notification.document.EmailLog;
@@ -56,15 +58,12 @@ public class MailAdminServiceImpl implements MailAdminService {
 
         ensureRequestComponent.editableEnsureRequest(expoId, memberId, loginType, ExpoAdminPermission.RESERVER_LIST_VIEW);
 
-        //public class MailSendContextResponse {
-        //    String expoName;
-        //    String contactPhone;
-        //    String contactEmail;
-        //    List<RecipientInfoDto> recipientInfos;
-        //}
         MailSendContextResponse response = ensureRequestComponent.mailSendContextRequest(
                 expoId, entranceStatus, name, phone, reservationCode, ticketName
         );
+
+        log.info("메일 발송 컨텍스트 조회 성공: expoId={}, response={}", expoId, response);
+
 
         String html = renderEmailHtml(dto, response);
 
@@ -131,8 +130,8 @@ public class MailAdminServiceImpl implements MailAdminService {
 
             mailSender.send(mimeMessage);
             log.info("Email sent successfully. from=noreply@myce.live, recipients={}명, subject={}", recipients.size(), subject);
-        } catch (MessagingException | UnsupportedEncodingException me) {
-            log.error("Failed to send email. recipients={}명, subject={}", recipients.size(), subject);
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
         }
     }
 }
