@@ -22,18 +22,6 @@ public class RestClientConfig {
         return RestClient.builder()
                 .baseUrl(coreBaseUrl)
                 .defaultHeader("X-Internal-Auth", externalAuthValue)
-                .defaultStatusHandler(
-                        HttpStatusCode::is4xxClientError,
-                        (request, response) -> {
-                            throw new CustomException( CustomErrorCode.CORE_CLIENT_ERROR);
-                        }
-                )
-                .defaultStatusHandler(
-                        HttpStatusCode::is5xxServerError,
-                        (request, response) -> {
-                            throw new CustomException(CustomErrorCode.CORE_SERVER_ERROR);
-                        }
-                )
                 .build();
     }
 }

@@ -62,6 +62,9 @@ public class MailAdminServiceImpl implements MailAdminService {
                 expoId, entranceStatus, name, phone, reservationCode, ticketName
         );
 
+        log.info("메일 발송 컨텍스트 조회 성공: expoId={}, response={}", expoId, response);
+
+
         String html = renderEmailHtml(dto, response);
 
         List<EmailLog.RecipientInfo> recipientInfos;
