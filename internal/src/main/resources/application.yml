@@ -13,6 +13,8 @@ gateway:
     value: internal-request
 
 spring:
+  application:
+    name: notification-internal
   profiles:
     active: ${PROFILE:local} # local | product
     include:
@@ -54,3 +56,12 @@ app:
   kafka:
     topics:
       notification-sse: notification.sse
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8084/eureka
+  instance:
+    prefer-ip-address: true
