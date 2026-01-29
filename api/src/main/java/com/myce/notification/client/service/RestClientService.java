@@ -1,4 +1,4 @@
-package com.myce.notification.restclient.service;
+package com.myce.notification.client.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

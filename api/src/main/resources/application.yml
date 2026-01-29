@@ -15,7 +15,6 @@ gateway:
   auth:
     value: local-gateway
 
-
 external:
   base-url:
     core: lb://CORE-INTERNAL

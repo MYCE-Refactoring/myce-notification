@@ -1,4 +1,4 @@
-package com.myce.notification.restclient.component.endpoints;
+package com.myce.notification.client.component.endpoints;
 
 public class RestClientEndPoints {
 
