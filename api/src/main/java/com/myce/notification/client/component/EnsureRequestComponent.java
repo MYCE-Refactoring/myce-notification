@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static com.myce.notification.exception.CustomErrorCode.*;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -34,10 +36,13 @@ public class EnsureRequestComponent {
         EnsureExpoPermissionRequest body = new EnsureExpoPermissionRequest(
                 expoId, memberId, loginType, permission
         );
+        try{externalFeignClient.ensureViewable(body);}
+        catch(Exception e) {
+            throw new CustomException(EXPO_VIEW_DENIED);
+        }
 
-        externalFeignClient.ensureViewable(body);
 
-        log.info("[FeignCall] expoId={}, memberId={}, loginType={}, permission={}",
+            log.info("[FeignCall] expoId={}, memberId={}, loginType={}, permission={}",
                 expoId, memberId, loginType, permission
         );
 
@@ -48,36 +53,29 @@ public class EnsureRequestComponent {
                                          LoginType loginType,
                                          ExpoAdminPermission permission) {
 
-        Map<String, Object> body = Map.of(
-                "expoId", expoId,
-                "memberId", memberId,
-                "loginType", loginType,
-                "permission", permission
+        EnsureExpoPermissionRequest body = new EnsureExpoPermissionRequest(
+                expoId, memberId, loginType, permission
         );
 
-        ResponseEntity<Void> response = restClientService.postAction(
-                RestClientEndPoints.ENSURE_EDITABLE, body);
-
-        if (!response.getStatusCode().is2xxSuccessful()) {
-            throw new CustomException(CustomErrorCode.EXPO_EDIT_DENIED);
+        try{
+            externalFeignClient.ensureEditable(body);
+        }
+        catch(Exception e) {
+            throw new CustomException(EXPO_EDIT_DENIED);
         }
     }
 
     public MailSendContextResponse mailSendContextRequest(Long expoId, String entranceStatus, String name,
                                        String phone, String reservationCode, String ticketName) {
-        //NULLABLE은 DTO로 보내야 NPE 안걸림
+
         MailSendContextRequest body = new MailSendContextRequest(
                 expoId, entranceStatus, name, phone, reservationCode, ticketName
         );
 
-        ResponseEntity<MailSendContextResponse> response = restClientService.postAction(
-                RestClientEndPoints.MAIL_CONTEXT, body,
-                MailSendContextResponse.class);
-
-        if (!response.getStatusCode().is2xxSuccessful()) {
-            throw new CustomException(CustomErrorCode.MAIL_CONTEXT_FAILED);
+        try{
+            return externalFeignClient.mailContext(body);
+        } catch(Exception e) {
+            throw new CustomException(MAIL_CONTEXT_FAILED);
         }
-
-        return response.getBody();
     }
 }
