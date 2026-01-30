@@ -21,6 +21,7 @@ import java.util.Map;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final String GATEWAY_AUTH_VALUE;
+    private final String INTERNAL_AUTH_VALUE;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -29,9 +30,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String method = request.getMethod();
         log.debug("[JwtAuthenticationFilter] Input uri={}, method={}", uri, method);
 
-        String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
 
-        if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE))) {
+        String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
+        boolean isInternal = uri != null && uri.startsWith("/internal/");
+        String expected = isInternal ? INTERNAL_AUTH_VALUE : GATEWAY_AUTH_VALUE;
+
+        if (authValue == null || !authValue.equals(expected)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }

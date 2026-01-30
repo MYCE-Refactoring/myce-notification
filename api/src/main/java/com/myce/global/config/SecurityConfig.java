@@ -19,10 +19,14 @@ public class SecurityConfig {
     @Value("${gateway.auth.value}")
     private String GATEWAY_AUTH_VALUE;
 
+    @Value("${external.auth.value}")
+    private String INTERNAL_AUTH_VALUE;
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(GATEWAY_AUTH_VALUE);
+        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(GATEWAY_AUTH_VALUE, INTERNAL_AUTH_VALUE);
 
         http
                 .csrf(AbstractHttpConfigurer::disable)
