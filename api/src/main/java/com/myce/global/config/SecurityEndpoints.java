@@ -9,7 +9,6 @@ public final class SecurityEndpoints {
 
     // ===== POST 요청 허용 엔드포인트 =====
     public static final String[] POST_PERMIT_ALL = {
-            "/api/notifications/sse/notify",
     };
 
     // ===== GET 요청 허용 엔드포인트 =====
@@ -37,5 +36,6 @@ public final class SecurityEndpoints {
             "/images/**",
             "/api/login/oauth2/code/**",
             "/api/oauth2/**",
+            "/internal/**"
     };
 }
