@@ -14,9 +14,9 @@ public class NotificationConsumer {
 
     private final SseService sseService;
 
-    @KafkaListener(topics = "${app.kafka.topics.notification-sse}", groupId = "notification-sse-consumer")
-    public void consume(SendNotificationRequest req) {
-        sseService.notifyMemberViaSseEmitters(req.getMemberId(), req.getContent());
-        log.info("SSE Event Occur: memberId={}, type={}", req.getMemberId(), req.getType());
-    }
+//    @KafkaListener(topics = "${app.kafka.topics.notification-sse}", groupId = "notification-sse-consumer")
+//    public void consume(SendNotificationRequest req) {
+//        sseService.notifyMemberViaSseEmitters(req.getMemberId(), req.getContent());
+//        log.info("SSE Event Occur: memberId={}, type={}", req.getMemberId(), req.getType());
+//    }
 }

@@ -15,7 +15,6 @@ gateway:
   auth:
     value: local-gateway
 
-
 external:
   base-url:
     core: lb://CORE-INTERNAL
@@ -84,3 +83,14 @@ springdoc:
     persistAuthorization: true
   api-docs:
     path: /v3/api-docs
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true

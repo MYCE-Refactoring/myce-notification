@@ -1,4 +1,4 @@
-package com.myce.notification.restclient.service;
+package com.myce.notification.client.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,7 @@ public class RestClientService {
                 .body(body)
                 .exchange((req, res) -> {
                     R responseBody = null;
+
                     if (res.getStatusCode().is2xxSuccessful()) {
                         responseBody = res.bodyTo(responseType);
                     }

@@ -38,7 +38,9 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
 
     @Override
     public MessageTemplateResponse getMessageTemplateById(long id) {
+
         MessageTemplateSetting templateSetting = templateSettingRepository.findById(id)
+
                 .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_EXIST_MESSAGE_TEMPLATE));
 
         SendGetMessageRequest req = SendGetMessageRequest.builder().

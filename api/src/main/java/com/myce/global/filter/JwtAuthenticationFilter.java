@@ -74,4 +74,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // 다음 필터로
         filterChain.doFilter(request, response);
     }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        return uri != null && uri.startsWith("/actuator/");
+    }
 }

@@ -5,7 +5,7 @@ import com.myce.notification.common.ExpoAdminPermission;
 import com.myce.notification.dto.email.MailSendContextResponse;
 import com.myce.notification.exception.CustomErrorCode;
 import com.myce.notification.exception.CustomException;
-import com.myce.notification.restclient.component.EnsureRequestComponent;
+import com.myce.notification.client.component.EnsureRequestComponent;
 import com.myce.notification.service.MailAdminService;
 import com.myce.notification.document.EmailLog;
 import com.myce.notification.dto.email.ExpoAdminEmailRequest;
