@@ -36,10 +36,8 @@ public class EnsureRequestComponent {
         EnsureExpoPermissionRequest body = new EnsureExpoPermissionRequest(
                 expoId, memberId, loginType, permission
         );
-        try{externalFeignClient.ensureViewable(body);}
-        catch(Exception e) {
-            throw new CustomException(EXPO_VIEW_DENIED);
-        }
+        externalFeignClient.ensureViewable(body);
+
 
 
             log.info("[FeignCall] expoId={}, memberId={}, loginType={}, permission={}",

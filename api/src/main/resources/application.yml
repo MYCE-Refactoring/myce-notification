@@ -83,3 +83,14 @@ springdoc:
     persistAuthorization: true
   api-docs:
     path: /v3/api-docs
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true

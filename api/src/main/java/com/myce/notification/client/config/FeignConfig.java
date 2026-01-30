@@ -17,4 +17,3 @@ public class FeignConfig {
                 template.header("X-Internal-Auth", externalAuthValue);
     }
 }
-

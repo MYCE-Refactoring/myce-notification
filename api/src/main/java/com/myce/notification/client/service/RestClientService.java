@@ -26,6 +26,7 @@ public class RestClientService {
                 .body(body)
                 .exchange((req, res) -> {
                     R responseBody = null;
+
                     if (res.getStatusCode().is2xxSuccessful()) {
                         responseBody = res.bodyTo(responseType);
                     }
