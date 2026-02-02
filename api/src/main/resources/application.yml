@@ -13,13 +13,13 @@ sse:
 
 gateway:
   auth:
-    value: local-gateway
+    value: ${GATEWAY_AUTH_VALUE}
 
 external:
   base-url:
     core: lb://CORE-INTERNAL
   auth:
-    value: internal-request
+    value: ${INTERNAL_AUTH_VALUE}
 
 internal:
   auth:
