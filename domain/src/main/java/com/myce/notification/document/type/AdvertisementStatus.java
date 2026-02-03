@@ -19,28 +19,4 @@ public enum AdvertisementStatus {
     CANCELLED("취소 완료");
 
     private final String label;
-
-
-    public static AdvertisementStatus fromString(String text) {
-        for (AdvertisementStatus t : AdvertisementStatus.values()) {
-            if (t.name().equalsIgnoreCase(text))return t;
-        }
-        return null;
-    }
-
-    public static final List<AdvertisementStatus> COMPLETED_STATUSES = List.of(
-            COMPLETED, CANCELLED
-    );
-
-    public static final List<AdvertisementStatus> EXPIRED_STATUSES = List.of(
-            REJECTED, CANCELLED
-    );
-
-    public static final List<AdvertisementStatus> ACTIVE_STATUSES = List.of(
-            PUBLISHED, PENDING_CANCEL
-    );
-
-    public static final List<AdvertisementStatus> ADMIN_VIEWABLE_STATUSES = List.of(
-            PENDING_PUBLISH, PUBLISHED, PENDING_CANCEL, COMPLETED, CANCELLED
-    );
 }

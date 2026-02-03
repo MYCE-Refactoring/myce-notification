@@ -2,14 +2,19 @@ server:
   port: 8011
   forward-headers-strategy: native
 
-app:
-  kafka:
-    topics:
-      notification-sse: notification.sse
+sse:
+  default:
+    timeout: 30 #분
 
 gateway:
   auth:
-    value: local-gateway
+    value: ${GATEWAY_AUTH_VALUE}
+
+external:
+  base-url:
+    core: lb://CORE-INTERNAL
+  auth:
+    value: ${INTERNAL_AUTH_VALUE}
 
 internal:
   auth:
@@ -22,20 +27,24 @@ logging:
     com.myce.common.aop.ControllerLoggingAspect: debug
 
 spring:
+  application:
+    name: notification-api
   profiles:
     active: ${PROFILE:local} # local | product
     include:
       - domain
       - common
-  kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-    consumer:
-      group-id: notification-sse-consumer
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "com.myce.notification.dto.request"
+  mail:
+    host: ${MAIL_HOST}
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls: # isActive
+            enable: true
   servlet: # file uploads
     multipart:
       max-file-size: 10MB
@@ -45,9 +54,29 @@ spring:
       - optional:file:./.env[.properties]
       - optional:file:../.env[.properties]
 
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URL}
+  instance:
+    prefer-ip-address: true
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
     persistAuthorization: true
   api-docs:
     path: /v3/api-docs
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true

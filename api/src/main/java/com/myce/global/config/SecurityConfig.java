@@ -19,8 +19,9 @@ public class SecurityConfig {
     @Value("${gateway.auth.value}")
     private String GATEWAY_AUTH_VALUE;
 
-    @Value("${internal.auth.value}")
+    @Value("${external.auth.value}")
     private String INTERNAL_AUTH_VALUE;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -45,9 +46,6 @@ public class SecurityConfig {
                         .requestMatchers(SecurityEndpoints.ETC_PERMIT_ALL).permitAll()
                         .anyRequest().authenticated()
                 );
-
-
-
         return http.build();
     }
 }

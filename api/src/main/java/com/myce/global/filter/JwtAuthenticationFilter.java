@@ -1,6 +1,5 @@
 package com.myce.global.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myce.global.dto.CustomUserDetails;
 import com.myce.global.dto.type.LoginType;
 import jakarta.servlet.FilterChain;
@@ -31,9 +30,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String method = request.getMethod();
         log.debug("[JwtAuthenticationFilter] Input uri={}, method={}", uri, method);
 
-        String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
 
-        if (authValue == null || (!authValue.equals(GATEWAY_AUTH_VALUE) && !authValue.equals(INTERNAL_AUTH_VALUE))) {
+        String authValue = request.getHeader(InternalHeaderKey.INTERNAL_AUTH);
+        boolean isInternal = uri != null && uri.startsWith("/internal/");
+        String expected = isInternal ? INTERNAL_AUTH_VALUE : GATEWAY_AUTH_VALUE;
+
+        if (authValue == null || !authValue.equals(expected)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
@@ -75,5 +77,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // 다음 필터로
         filterChain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        return uri != null && uri.startsWith("/actuator/");
     }
 }
