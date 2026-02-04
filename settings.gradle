@@ -1,2 +1,4 @@
 rootProject.name = 'myce-notification'
-include 'api', 'domain', 'internal', 'common'
+include 'api', 'domain', 'common'
+
+project(':api').name = 'myce-notification'

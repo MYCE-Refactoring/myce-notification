@@ -1,6 +1,24 @@
 server:
-  port: 8082
+  port: 8011
   forward-headers-strategy: native
+
+sse:
+  default:
+    timeout: 30 #분
+
+gateway:
+  auth:
+    value: ${GATEWAY_AUTH_VALUE}
+
+external:
+  base-url:
+    core: lb://CORE-INTERNAL
+  auth:
+    value: ${INTERNAL_AUTH_VALUE}
+
+internal:
+  auth:
+    value: internal-notifications
 
 logging:
   level:
@@ -9,19 +27,41 @@ logging:
     com.myce.common.aop.ControllerLoggingAspect: debug
 
 spring:
+  application:
+    name: notification-api
   profiles:
     active: ${PROFILE:local} # local | product
     include:
       - domain
       - common
+  mail:
+    host: ${MAIL_HOST}
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls: # isActive
+            enable: true
   servlet: # file uploads
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
   config:
     import:
-      - optional:file:./.env[.properties]
-      - optional:file:../.env[.properties]
+      - optional:aws-parameterstore:/myce/common/
+      - optional:aws-parameterstore:/myce/${spring.profiles.active}/
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URL}
+  instance:
+    prefer-ip-address: true
 
 springdoc:
   swagger-ui:
@@ -29,3 +69,14 @@ springdoc:
     persistAuthorization: true
   api-docs:
     path: /v3/api-docs
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true

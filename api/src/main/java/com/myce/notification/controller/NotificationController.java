@@ -2,9 +2,8 @@ package com.myce.notification.controller;
 
 import com.myce.global.dto.CustomUserDetails;
 import com.myce.notification.dto.response.NotificationResponse;
-import com.myce.notification.dto.response.NotificationResponseList;
 import com.myce.notification.dto.response.PageResponse;
-import com.myce.notification.service.NotificationService;
+import com.myce.notification.service.NotificationApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class NotificationController {
 
-    private final NotificationService notificationService;
+    private final NotificationApiService notificationService;
+
 
     @GetMapping
     public ResponseEntity<PageResponse<NotificationResponse>> getNotifications(
@@ -31,19 +31,19 @@ public class NotificationController {
                 notificationService.getNotificationsByMemberId(memberId, page)
         );
     }
-
-
     @PutMapping("/{notificationId}/read")
     public ResponseEntity<Void> markAsRead(
-            @PathVariable String notificationId) {
-        Long memberId = 1L;
+            @PathVariable String notificationId,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long memberId = userDetails.getMemberId();
         notificationService.markAsRead(notificationId, memberId);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/read-all")
-    public ResponseEntity<Void> markAllAsRead() {
-        Long memberId = 1L;
+    public ResponseEntity<Void> markAllAsRead(
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long memberId = userDetails.getMemberId();
         notificationService.markAllAsRead(memberId);
         return ResponseEntity.ok().build();
     }
