@@ -20,9 +20,3 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
-// IntelliJ Kotlin plugin sometimes requests this task even in pure Java projects.
-// Define a no-op to silence "prepareKotlinBuildScriptModel not found" sync errors.
-if (tasks.findByName("prepareKotlinBuildScriptModel") == null) {
-    tasks.register("prepareKotlinBuildScriptModel") {}
-}
