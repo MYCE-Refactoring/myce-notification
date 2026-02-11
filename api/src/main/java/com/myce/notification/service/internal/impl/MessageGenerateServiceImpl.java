@@ -44,16 +44,13 @@ public class MessageGenerateServiceImpl implements MessageGenerateService {
         context.setVariable("code", code);
         context.setVariable("verificationName", verificationName);
         context.setVariable("limitTime", limitTime);
-
         SendGetMessageRequest request = SendGetMessageRequest.builder().
                 content(messageTemplate.getContent()).
                 code(messageTemplate.getCode()).
                 isUseImage(messageTemplate.isUseImage()).
                 context(context).
                 build();
-
         String message = messageCommonService.getFullMessage(request);
-
         mailSendService.sendMail(new EmailSendRequest(email, messageTemplate.getSubject(), message));
 
     }
