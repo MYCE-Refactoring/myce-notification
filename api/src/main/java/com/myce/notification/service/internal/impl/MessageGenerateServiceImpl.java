@@ -107,11 +107,11 @@ public class MessageGenerateServiceImpl implements MessageGenerateService {
         // 회원/비회원에 따른 안내 문구 설정
         String securityContent;
         if (userType == UserType.MEMBER) {
-            securityContent = "• 예매 확인 및 QR 코드는 <a href='https://www.myce.live'>MYCE</a> 로그인 후, 마이페이지에서 확인 가능합니다<br>" +
+            securityContent = "• 예매 확인 및 QR 코드는 <a href='https://www.myce.cloud'>MYCE</a> 로그인 후, 마이페이지에서 확인 가능합니다<br>" +
                             "• 박람회 당일 QR 코드를 제시해주세요<br>" +
                             "• 문의사항이 있으시면 고객센터로 연락해주세요";
         } else {
-            securityContent = "• 예매 확인 및 QR 코드는 <a href='https://www.myce.live/guest-reservation'>비회원 예매 확인</a>에서 확인 가능합니다<br>" +
+            securityContent = "• 예매 확인 및 QR 코드는 <a href='https://www.myce.cloud/guest-reservation'>비회원 예매 확인</a>에서 확인 가능합니다<br>" +
                             "• 박람회 당일 QR 코드를 제시해주세요<br>" +
                             "• 문의사항이 있으시면 고객센터로 연락해주세요";
         }

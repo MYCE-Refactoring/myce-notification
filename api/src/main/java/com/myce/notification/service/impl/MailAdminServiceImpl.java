@@ -119,7 +119,7 @@ public class MailAdminServiceImpl implements MailAdminService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            messageHelper.setFrom("noreply@myce.live", "MYCE");
+            messageHelper.setFrom("noreply@myce.cloud", "MYCE");
 
 
             String[] toArray = recipients .toArray(new String[0]);
@@ -129,7 +129,7 @@ public class MailAdminServiceImpl implements MailAdminService {
             messageHelper.setText(content, true);
 
             mailSender.send(mimeMessage);
-            log.info("Email sent successfully. from=noreply@myce.live, recipients={}명, subject={}", recipients.size(), subject);
+            log.info("Email sent successfully. from=noreply@myce.cloud, recipients={}명, subject={}", recipients.size(), subject);
         } catch (MessagingException | UnsupportedEncodingException e) {
             throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
         }

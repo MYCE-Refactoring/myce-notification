@@ -27,14 +27,14 @@ public class MailSendServiceImpl implements MailSendService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            messageHelper.setFrom("noreply@myce.live", "MYCE");
+            messageHelper.setFrom("noreply@myce.cloud", "MYCE");
             messageHelper.setTo(req.getTo());
             messageHelper.setSubject(req.getSubject());
             messageHelper.setText(req.getContent(), true);
             mailSender.send(mimeMessage);
-            log.info("System email sent successfully. from=noreply@myce.live");
+            log.info("System email sent successfully. from=noreply@myce.cloud");
         } catch (MessagingException | UnsupportedEncodingException me) {
-            log.error("Failed to send system email. from=noreply@myce.live");
+            log.error("Failed to send system email. from=noreply@myce.cloud");
             throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
 
         }
@@ -46,7 +46,7 @@ public class MailSendServiceImpl implements MailSendService {
         String subject = req.getSubject();
         try {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            messageHelper.setFrom("noreply@myce.live", "MYCE");
+            messageHelper.setFrom("noreply@myce.cloud", "MYCE");
 
 
             String[] toArray = recipients.toArray(new String[0]);
@@ -56,7 +56,7 @@ public class MailSendServiceImpl implements MailSendService {
             messageHelper.setText(req.getContent(), true);
 
             mailSender.send(mimeMessage);
-            log.info("Email sent successfully. from=noreply@myce.live, recipients={}명, subject={}", recipients.size(), subject);
+            log.info("Email sent successfully. from=noreply@myce.cloud, recipients={}명, subject={}", recipients.size(), subject);
         } catch (MessagingException | UnsupportedEncodingException me) {
             log.error("Failed to send email. recipients={}명, subject={}", recipients.size(), subject);
             throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
@@ -68,14 +68,14 @@ public class MailSendServiceImpl implements MailSendService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            messageHelper.setFrom("support@myce.live", "MYCE Support");
+            messageHelper.setFrom("support@myce.cloud", "MYCE Support");
             messageHelper.setTo(req.getTo());
             messageHelper.setSubject(req.getSubject());
             messageHelper.setText(req.getContent(), true);
             mailSender.send(mimeMessage);
             log.info("Support email sent successfully");
         } catch (MessagingException | UnsupportedEncodingException me) {
-            log.error("Failed to send support email. from=support@myce.live");
+            log.error("Failed to send support email. from=support@myce.cloud");
             throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
 
         }

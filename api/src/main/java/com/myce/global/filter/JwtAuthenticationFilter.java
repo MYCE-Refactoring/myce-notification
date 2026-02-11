@@ -36,9 +36,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         boolean isInternal = uri != null && uri.startsWith("/internal/");
         String expected = isInternal ? INTERNAL_AUTH_VALUE : GATEWAY_AUTH_VALUE;
 
-        log.info("auth header={}", authValue);
-        log.info("expected={}", expected);
-
 
         if (authValue == null || !authValue.equals(expected)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
