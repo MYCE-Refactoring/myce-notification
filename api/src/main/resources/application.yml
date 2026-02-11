@@ -1,6 +1,9 @@
 server:
   port: 8011
   forward-headers-strategy: native
+  tomcat:
+    mbeanregistry:
+      enabled: true
 
 sse:
   default:
@@ -81,3 +84,6 @@ management:
     metrics:
       export:
         enabled: true
+  metrics:
+    enable:
+      tomcat: true
