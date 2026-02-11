@@ -47,7 +47,7 @@ public class MessageCommonService {
 
         return isUseImage
                 ? "mail/mail-image"
-                : "mail/mail-basic";
+                : "mail/mail-code";
     }
 
 

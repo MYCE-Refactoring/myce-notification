@@ -36,7 +36,6 @@ public class MailSendServiceImpl implements MailSendService {
         } catch (MessagingException | UnsupportedEncodingException me) {
             log.error("Failed to send system email. from=noreply@myce.cloud");
             throw new CustomException( CustomErrorCode.MAIL_SEND_FAIL);
-
         }
     }
 
